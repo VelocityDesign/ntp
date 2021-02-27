@@ -3,6 +3,6 @@ import Time from '../plugins/date-and-time';
 export default {
   'date-and-time': {
     component: Time,
-    defaultPosition: 'center-center'
+    defaultPosition: 'top-left'
   }
 };
