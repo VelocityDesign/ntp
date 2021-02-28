@@ -24,8 +24,15 @@ jobs:
               mv dist/* extension/builds/
               cp -r extension/base/* extension/builds/
       
+      - name: Get Time
+        id: time
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 8
+          format: 'YYYY-MM-DD-HH-mm-ss'
+      
       - name: Create artifact...
         uses: actions/upload-artifact@v2
         with:
-          name: extension
+          name: ${{ steps.time.outputs.time }}
           path: ./extension/builds/
