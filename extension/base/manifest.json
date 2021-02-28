@@ -12,14 +12,8 @@
     },
 
     "permissions": [
-                    "tabs"
-                    ],
-    "action": {
-        "default_icon": {
-            "16": "images/Compass_Logo.png",
-            "32": "images/Compass_Logo.png"
-          }
-    },
+        "tabs"
+    ],
     
     "chrome_url_overrides" : {
         "newtab": "index.html"
