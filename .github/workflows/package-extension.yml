@@ -20,12 +20,12 @@ jobs:
         run: |
               npm run build
               runTimestamp="$(date +%D)$(date +%H)-$(date +%M)-$(date +%S)"
-              mkdir "$(runTimestamp)"
-              mv dist/* extension/builds/$(runTimestamp)
-              cp extension/base/* extension/builds/$(runTimestamp)
+              mkdir $runTimestamp
+              mv dist/* extension/builds/$runTimestamp
+              cp extension/base/* extension/builds/$runTimestamp
       
       - name: Create artifact...
         uses: actions/upload-artifact@v2
         with:
           name: extension
-          path: ./extension/builds/$(runTimestamp)
+          path: ./extension/builds/$runTimestamp
