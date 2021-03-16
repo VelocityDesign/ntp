@@ -1,7 +1,7 @@
 {
     "name": "Compass",
     "version": "1.0.0",
-    "manifest_version": 2
+    "manifest_version": 2,
 
     "default_locale": "en",
     "description": "Minimal and Elegant New Tab Page. Brought to you by DotHQ.",
