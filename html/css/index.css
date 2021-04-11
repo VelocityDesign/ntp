@@ -1,7 +1,19 @@
+:root {
+    --backg-text-color: black;
+    --backg-text-color-rgb: 0;
+}
+:root {
+    --gap: 34px;
+    --backg-color: white;
+    --backg-color-light: rgba(0, 0, 0, 0.1);
+    --accent-color: rgb(37, 110, 245);
+}
+
 body {
     margin: 0;
     padding: 0;
     background-color: black;
+    overflow: hidden;
 }
 .resting-app {
     width: 100%;
@@ -10,5 +22,20 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     opacity: 1;
-    transition: opacity 0.3s ease;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.widget {
+    padding: 20px 38px 20px 38px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease 0s;
+}
+
+
+.widgets-container > .top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: var(--gap);
+    margin-left: var(--gap);
 }

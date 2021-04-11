@@ -20,11 +20,7 @@ const initialiseWidget = (widgetURL) => {
         if (response.status == 200){
             response.text()
             .then((widgetJS) => {
-                const js = document.createElement("script");
-
-                js.innerHTML = widgetJS
-
-                document.body.appendChild(js);
+                eval(widgetJS);
             });
         } else {
             netError(response.status);

@@ -38,7 +38,7 @@ const placeWallpaper = (blob) => {
     document.getElementById("resting-app").setAttribute(
         "style",
         `background-image: url(${blob});`
-    )
+    );
 }
 
 window.addEventListener("beforeunload", () => {
