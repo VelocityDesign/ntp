@@ -48,3 +48,74 @@ body {
     margin-top: var(--gap);
     margin-left: var(--gap);
 }
+.widgets-container > .top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: var(--gap);
+    margin-right: var(--gap);
+}
+.widgets-container > .bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: var(--gap);
+    margin-left: var(--gap);
+}
+.widgets-container > .bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: var(--gap);
+    margin-right: var(--gap);
+}
+
+
+.loading {
+  background: linear-gradient(
+    270deg,
+    var(--backg-color-light),
+    var(--backg-color-light),
+    var(--backg-color-light),
+    var(--backg-color-light),
+    var(--backg-color-light),
+    var(--backg-color-light),
+    var(--backg-color),
+    var(--backg-color-light),
+    var(--backg-color-light),
+    var(--backg-color-light),
+    var(--backg-color-light),
+    var(--backg-color-light),
+    var(--backg-color-light)
+  );
+  background-size: 600% 600%;
+
+  -webkit-animation: SkeletonAnimation 6s ease infinite;
+  -moz-animation: SkeletonAnimation 6s ease infinite;
+  animation: SkeletonAnimation 6s ease infinite;
+}
+
+@-webkit-keyframes SkeletonAnimation {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes SkeletonAnimation {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes SkeletonAnimation {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
