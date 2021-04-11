@@ -2,6 +2,9 @@ import styled, { css } from "styled-components";
 
 export const NTP = styled.main`
     padding: 78px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 78px * 2);
 
     ${({ backgroundSrc, ready }: { backgroundSrc: string; ready: boolean }) => css`
         --ntp-opacity: ${ready ? 1 : 0};
@@ -19,7 +22,7 @@ export const NTP = styled.main`
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            transition: 0.5s opacity ease-in-out, 0.5s transform ease-in-out;
+            transition: 0.5s opacity ease-in-out, 0.3s transform ease-in-out;
             opacity: var(--ntp-opacity);
             transform: var(--ntp-bg-transform);
             overflow: hidden;

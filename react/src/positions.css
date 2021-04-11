@@ -1,0 +1,12 @@
+.top-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.bottom-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1;
+}

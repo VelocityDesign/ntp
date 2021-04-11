@@ -1,9 +1,12 @@
 import React from "react"
 
 import '../../reset.css';
+import '../../positions.css';
 import { NTP } from "./style";
 
 import backgrounds from "../../backgrounds.json";
+import { Time } from "../../widgets/Time";
+import { Weather } from "../../widgets/Weather";
 
 const background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
 
@@ -18,7 +21,8 @@ export const App = () => {
 
     return (
         <NTP backgroundSrc={background.id} ready={ready}>
-            <div>testing</div>
+            <Time />
+            <Weather />
         </NTP>
     )
 }
