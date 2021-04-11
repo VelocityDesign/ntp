@@ -6,6 +6,8 @@ export const TimeWidget = styled.time`
         font-weight: 600;
         line-height: 62px;
         margin-bottom: 2px;
+        border: none;
+        outline: none;
     }
 
     & > p {

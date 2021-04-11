@@ -1,25 +1,30 @@
 import React from "react";
-import useLocalStorage from 'use-local-storage-state'
+import useLocalStorage, { createLocalStorageStateHook } from 'use-local-storage-state'
 import { getTime } from "../../utils/time";
 import { TimeWidget } from "./style";
 import { format } from 'fecha';
+import { defaultDATSettings } from "./defaultSettings";
+import useLocalForage from "../../hooks/localforage";
 
 export const Time = () => {
     const [time, setTime] = React.useState("");
-    const [timeSettings, setTimeSettings] = useLocalStorage('widgets.time.settings', { hours: true, minutes: true, seconds: false, milliseconds: false });
-
     const [date, setDate] = React.useState("");
-    const [dateSettings, setDateSettings] = useLocalStorage('widgets.date.settings', { format: "Do MMMM YYYY" });
+
+    const [settings] = useLocalForage("datetime.settings", defaultDATSettings);
+
+    const tick = () => {
+        const t = getTime(settings.showSeconds);
+        const d = format(new Date(), settings.dateFormat)
+
+        setTime(t);
+        setDate(d);
+    }
 
     React.useEffect(() => {
-        setTime(getTime(timeSettings));
-        setDate(format(new Date(), dateSettings.format));
+        tick()
 
-        setInterval(() => {
-            setTime(getTime(timeSettings));
-            setDate(format(new Date(), dateSettings.format));
-        }, timeSettings.milliseconds ? 1 : 700)
-    }, [dateSettings])
+        setInterval(tick, 700)
+    }, [settings])
 
     return (
         <TimeWidget>

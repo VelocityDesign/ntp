@@ -16,7 +16,7 @@ export const SettingsPanel = styled.aside`
 `;
 
 export const Container = styled.div`
-    padding: 0 50px;
+    padding: 0 0 0 50px;
     height: calc(100vh - 50px * 2);
 `;
 
@@ -94,6 +94,18 @@ export const CategoryBackgroundIcon = styled.i`
     display: flex;
 
     mask-image: url(${require("../../assets/settings/categories/category-background.svg")});
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    background-color: #AFAFAF;
+`;
+
+export const CategoryDATIcon = styled.i`
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+    display: flex;
+
+    mask-image: url(${require("../../assets/settings/categories/category-date-and-time.svg")});
     mask-size: cover;
     mask-repeat: no-repeat;
     background-color: #AFAFAF;

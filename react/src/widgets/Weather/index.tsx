@@ -3,9 +3,10 @@ import useLocalStorage from 'use-local-storage-state'
 import { WeatherIcon, WeatherWidget } from "./style";
 import useSWR from 'swr'
 import { fetcher } from "../../utils/fetcher";
+import { defaultWeatherSettings } from "./defaultSettings";
 
 export const Weather = () => {
-    const [weatherSettings, setWeatherSettings] = useLocalStorage('widgets.weather.settings', { position: "bottom-left", city: "London", country: "England" });
+    const [weatherSettings, setWeatherSettings] = useLocalStorage('widgets.weather.settings', defaultWeatherSettings);
 
     const { data } = useSWR(
         `https://compass-api.vercel.app/weather/${weatherSettings.city},${weatherSettings.country}`, 
