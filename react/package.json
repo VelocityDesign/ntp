@@ -29,7 +29,9 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@dannyman/use-store": "^1.1.3",
     "@material-ui/core": "^4.11.3",
+    "@phntms/use-local-state": "^0.1.1",
     "axios": "^0.21.1",
     "fecha": "^4.2.1",
     "localforage": "^1.9.0",

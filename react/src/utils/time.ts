@@ -1,6 +1,12 @@
 import React from "react"
 
-export const getTime = (seconds?: boolean) => {
+const to24Hour = (time: string) => {
+    return new Date('1970-01-01T' + time + 'Z')
+                .toLocaleTimeString([],
+                    { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' }
+                );
+}
+export const getTime = (seconds?: boolean, twentyFourHour?: boolean) => {
     const date = new Date();
 
     const time = [];
@@ -9,5 +15,6 @@ export const getTime = (seconds?: boolean) => {
     time.push(date.getMinutes().toString().padStart(2, "0"))
     if(seconds) time.push(date.getSeconds().toString().padStart(2, "0"))
 
-    return time.join(":")
+    if(!twentyFourHour) return to24Hour(time.join(":"))
+    else return time.join(":")
 }

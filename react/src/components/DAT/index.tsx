@@ -1,31 +1,35 @@
 import React from "react";
 import { getTime } from "../../utils/time";
 import { TimeWidget } from "../../widgets/Time/style";
-import { format } from 'fecha';
 import { StyledDAT, DATPreview, CheckboxParent } from "./style";
 import { Checkbox } from "@material-ui/core";
 import { defaultDATSettings } from "../../widgets/Time/defaultSettings";
-import useLocalForage from "../../hooks/localforage";
+import useLocalState from '@phntms/use-local-state';
+import { setTimeSettings, timeSettings } from "../../widgets/Time";
 
 export const DAT = () => {
     const [time, setTime] = React.useState("");
     const [date, setDate] = React.useState("");
 
-    const [settings, setSettings] = useLocalForage("datetime.settings", defaultDATSettings);
+    let timeInterval: any;
 
     const onTFHChange = () => {
-        setSettings({ ...settings, twentyFourHour: !settings.twentyFourHour })
+        setTimeSettings({ ...timeSettings, twentyFourHour: !timeSettings.twentyFourHour })
     }
 
     const onShowSecondsChange = () => {
-        setSettings({ ...settings, seconds: !settings.seconds })
+        setTimeSettings({ ...timeSettings, showSeconds: !timeSettings.showSeconds })
     }
 
     React.useEffect(() => {
-        setInterval(() => {
-            setTime(getTime(settings.seconds))
-        }, 1000)
-    }, [settings])
+        console.log("dat", timeSettings)
+
+        timeInterval = setInterval(() => {
+            setTime(getTime(timeSettings.showSeconds, timeSettings.twentyFourHour))
+        }, 1)
+
+        return () => clearInterval(timeInterval);
+    }, [timeSettings])
 
     return (
         <StyledDAT style={{ paddingRight: "50px" }}>
@@ -42,7 +46,7 @@ export const DAT = () => {
                     color={"primary"} 
                     disableRipple 
                     disableFocusRipple 
-                    checked={settings.time.twentyFourHour} 
+                    checked={timeSettings.twentyFourHour} 
                     onChange={() => onTFHChange()}
                 />
             </CheckboxParent>
@@ -53,7 +57,7 @@ export const DAT = () => {
                     color={"primary"} 
                     disableRipple 
                     disableFocusRipple 
-                    checked={settings.time.seconds} 
+                    checked={timeSettings.showSeconds} 
                     onChange={() => onShowSecondsChange()}
                 />
             </CheckboxParent>
