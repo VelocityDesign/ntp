@@ -56,7 +56,6 @@ class WeatherWidget {
                             display: flex;
                             align-items: ${settings["text-position"]};
                             flex-direction: column;
-                            opacity: 1;
                             transition: opacity 0.3s ease;
                         `);
                     })
