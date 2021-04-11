@@ -20,7 +20,8 @@ export const getTime = (
     if(hours) time.push(date.getHours().toString().padStart(2, "0"))
     if(minutes) time.push(date.getMinutes().toString().padStart(2, "0"))
     if(seconds) time.push(date.getSeconds().toString().padStart(2, "0"))
-    if(milliseconds) time.push(date.getMilliseconds().toString().padStart(2, "0"))
+    
+    const ms = date.getMilliseconds().toString().slice(0, -1).padStart(2, "0");
 
-    return time.join(":")
+    return `${time.join(":")}${milliseconds ? `.${ms}` : ``}`
 }

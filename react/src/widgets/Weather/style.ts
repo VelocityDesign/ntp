@@ -5,6 +5,7 @@ export const WeatherWidget = styled.div`
         font-weight: 600;
         font-size: 28px;
         line-height: 34px;
+        margin-bottom: 4px;
     }
 
     & > p {

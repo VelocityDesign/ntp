@@ -1,12 +1,51 @@
+:root {
+    --gap: 78px;
+}
+
 .top-left {
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
+    margin-top: var(--gap);
+    margin-left: var(--gap);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: var(--gap);
+    margin-right: var(--gap);
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: var(--gap);
+    margin-left: var(--gap);
+    text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    flex: 1;
+    align-items: flex-start;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: var(--gap);
+    margin-right: var(--gap);
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
