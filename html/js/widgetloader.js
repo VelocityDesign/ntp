@@ -14,14 +14,17 @@ const loadWidgets = () => {
     });
 }
 
-const initialiseWidget = (widgetURL, widgetEntry) => {
+const initialiseWidget = (widgetURL) => {
     fetch(widgetURL)
     .then((response) => {
         if (response.status == 200){
             response.text()
             .then((widgetJS) => {
-                eval(widgetJS);
-                eval(widgetEntry);
+                const js = document.createElement("script");
+
+                js.innerHTML = widgetJS
+
+                document.body.appendChild(js);
             });
         } else {
             netError(response.status);
