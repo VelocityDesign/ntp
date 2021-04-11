@@ -40,6 +40,7 @@ const placeWallpaper = (blob) => {
         `
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 53.65%, rgba(0, 0, 0, 0.35) 100%),
                         url(${blob});
+            background-repeat: no-repeat;
         `
     );
 }

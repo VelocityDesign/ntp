@@ -7,4 +7,9 @@
     "componentName":"weather@dothq.co",
     "version":"1.0",
     "path":"/js/widgets/weather.js"
+},
+{
+    "componentName":"settings@dothq.co",
+    "version":"1.0",
+    "path":"/js/widgets/settings.js"
 }]

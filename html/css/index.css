@@ -9,6 +9,10 @@
     --accent-color: rgb(37, 110, 245);
 }
 
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -30,7 +34,7 @@ body {
 .widget {
     padding: 20px 38px 20px 38px;
     border-radius: 8px;
-    transition: background-color 0.2s ease 0s;
+    transition: background-color 0.1s ease;
 }
 
 .widget > * {
@@ -68,6 +72,30 @@ body {
     right: 0;
     margin-bottom: var(--gap);
     margin-right: var(--gap);
+}
+
+.settings-open {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.settings-close {
+    position: absolute;
+    right: -550px;
+    top: 0;
+}
+
+.settings-loaded {
+    padding: 50px;
+}
+
+.settings-container {
+    width: 550px;
+    max-width: 100%;
+    height: 100vh;
+    background-color: var(--backg-color);
+    transition: right 0.3s ease;
 }
 
 

@@ -7,6 +7,8 @@
             href="/css/index.css"
             rel="stylesheet" 
         />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -21,12 +23,27 @@
         <div
         class="widgets-container"
         id="widgets-container">
+            
+        </div>
 
+        <div
+        class="settings-container settings-close"
+        id="settings-container">
+            <div class="settings-skel"></div>
+
+            <div
+            id="settings-loaded"
+            class="settings-loaded"
+            style="display: none;"
+            id="settings-loaded">
+
+            </div>
         </div>
     </body>
 
     <script src="/js/errorhandler.js"></script>
     <script src="/js/widgetloader.js"></script>
+    <script src="/js/settings.js"></script>
     <script src="/js/wallpaper.js"></script>
     <script src="/js/index.js"></script>
 </html>
