@@ -51,6 +51,7 @@ export const App = () => {
                 ? `linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 53.65%, rgba(0, 0, 0, 0.35) 100%), url(backgrounds/unsplash/${background.id}.jpeg)`
                 : settings.colour || "#2554e1"
         )
+        if(settingsReady && settings.provider !== "unsplash") setReady(true);
     }, [settings, settingsReady])
 
     const onSettingsClose = () => {
