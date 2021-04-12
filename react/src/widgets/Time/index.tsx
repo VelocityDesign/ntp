@@ -1,25 +1,37 @@
 import React from "react";
-import useLocalStorage from 'use-local-storage-state'
 import { getTime } from "../../utils/time";
 import { TimeWidget } from "./style";
 import { format } from 'fecha';
+import { defaultDATSettings } from "./defaultSettings";
+import { useStore } from "react-hookstore";
 
 export const Time = () => {
     const [time, setTime] = React.useState("");
-    const [timeSettings, setTimeSettings] = useLocalStorage('widgets.time.settings', { hours: true, minutes: true, seconds: false, milliseconds: false });
-
     const [date, setDate] = React.useState("");
-    const [dateSettings, setDateSettings] = useLocalStorage('widgets.date.settings', { format: "Do MMMM YYYY" });
+
+    const [settings, setSettings]: [typeof defaultDATSettings, any] = useStore('datetimeSettings');
+    
+    let timeInterval: any;
+
+    const tick = () => {
+        const t = getTime(settings.showSeconds, settings.twentyFourHour);
+        const d = format(new Date(), settings.dateFormat)
+
+        setTime(t);
+        setDate(d);
+    }
 
     React.useEffect(() => {
-        setTime(getTime(timeSettings));
-        setDate(format(new Date(), dateSettings.format));
+        window.addEventListener("DOMContentLoaded", () => {
+            setSettings(localStorage.getItem("datetimeSettings") ? JSON.parse(localStorage.getItem("datetimeSettings") || "") : defaultDATSettings);
+        })
 
-        setInterval(() => {
-            setTime(getTime(timeSettings));
-            setDate(format(new Date(), dateSettings.format));
-        }, timeSettings.milliseconds ? 1 : 700)
-    }, [dateSettings])
+        tick()
+
+        timeInterval = setInterval(tick, 1)
+
+        return () => clearInterval(timeInterval);
+    }, [settings])
 
     return (
         <TimeWidget>

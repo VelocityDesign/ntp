@@ -6,3 +6,7 @@ html, body {
     color: white;
     user-select: none;
 }
+
+.MuiButtonBase-root {
+    padding: 0 !important;
+}

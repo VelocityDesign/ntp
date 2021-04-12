@@ -10,6 +10,9 @@ import { Weather } from "../../widgets/Weather";
 import { Settings } from "../Settings";
 import { SettingsHeader, Title, Close } from "../Settings/style";
 
+import { ThemeProvider } from "@material-ui/core"
+import { theme } from "../../theme";
+
 const background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
 
 export const App = () => {
@@ -23,7 +26,7 @@ export const App = () => {
     })
 
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <NTP backgroundSrc={background.id} ready={ready}>
                 <Time />
                 <Weather />
@@ -38,6 +41,6 @@ export const App = () => {
                     <Close onClick={() => onSettingsClick(false)} />
                 </SettingsHeader>
             </Settings>
-        </>
+        </ThemeProvider>
     )
 }

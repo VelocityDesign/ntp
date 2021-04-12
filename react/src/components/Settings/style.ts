@@ -16,8 +16,10 @@ export const SettingsPanel = styled.aside`
 `;
 
 export const Container = styled.div`
-    padding: 0 50px;
-    height: calc(100vh - 50px * 2);
+    padding: 0 0 0 50px;
+    height: calc(-136px + 100vh);
+    overflow-y: auto;
+    scrollbar-color: rgb(142, 142, 142) white;
 `;
 
 export const SettingsHeader = styled.header`
@@ -94,6 +96,30 @@ export const CategoryBackgroundIcon = styled.i`
     display: flex;
 
     mask-image: url(${require("../../assets/settings/categories/category-background.svg")});
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    background-color: #AFAFAF;
+`;
+
+export const CategoryDATIcon = styled.i`
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+    display: flex;
+
+    mask-image: url(${require("../../assets/settings/categories/category-date-and-time.svg")});
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    background-color: #AFAFAF;
+`;
+
+export const CategoryWeatherIcon = styled.i`
+    width: 18px;
+    height: 14px;
+    margin-right: 10px;
+    display: flex;
+
+    mask-image: url(${require("../../assets/settings/categories/category-weather.svg")});
     mask-size: cover;
     mask-repeat: no-repeat;
     background-color: #AFAFAF;
