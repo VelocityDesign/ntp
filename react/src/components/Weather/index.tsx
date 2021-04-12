@@ -70,7 +70,7 @@ export const Weather = () => {
     const onWeatherSave = () => {
         if(stageCity.length == 0 || stageCountry.length == 0) return;
 
-        setSettings({ ...settings, city: stageCity, country: stageCountry })
+        setSettings({ ...settings, city: stageCity, country: stageCountry, setup: true })
     }
 
     return (
