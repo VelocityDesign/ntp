@@ -77,6 +77,7 @@ export const DAT = () => {
                 <span>Date format</span>
                 <TextField
                     value={settings.dateFormat}
+                    placeholder={"Date format"}
                     variant="outlined"
                     size="small"
                     onChange={(e: any) => onDateFormatChange(e.target.value)}
