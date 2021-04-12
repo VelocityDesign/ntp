@@ -77,7 +77,7 @@ export const Weather = () => {
         <StyledWeather style={{ paddingRight: "50px" }}>
             <WeatherPreview>
                 <WeatherWidget>
-                    {(ready && !settings.setup) && <WeatherNotSetup />}
+                    {(!data && ready && !settings.setup) && <WeatherNotSetup />}
                     {(!data && settings.setup) && <WeatherLoading />}
                     {(data && !data.main) && <WeatherFailed />}
                     {(data && data.main) && (
