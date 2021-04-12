@@ -42,4 +42,5 @@ html, body {
     display: flex;
     justify-content: flex-end;
     margin: 12px 0;
+    margin-bottom: 32px;
 }

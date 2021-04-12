@@ -36,7 +36,7 @@ export const Weather = () => {
     return (
         <WeatherWidget className={settings.position}>
             <WeatherIcon icon={require("../../assets/weather/cloud.svg")} />
-            <h1>{calculateTemp(data.main.temp, settings.useFahrenheit)}°{settings.useFahrenheit ? `F` : `C`}</h1>
+            <h1>{calculateTemp(data.main.temp, settings.unit)}</h1>
             <p>{data.name ? data.name : settings.city}, {(data.sys.country && countryCodes[data.sys.country]) ? countryCodes[data.sys.country] : settings.country}</p>
         </WeatherWidget>
     )

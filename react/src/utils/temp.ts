@@ -1,4 +1,15 @@
-export const calculateTemp = (raw: number, fahrenheit?: boolean) => {
-    if(!fahrenheit) return Math.floor(raw - 273.15) // celcius
-    else return Math.floor(((raw - 273.15) * 1.8) + 32) // fahrenheit
+export const calculateTemp = (raw: number, unit: number) => {
+    let temp = 0;
+
+    if(unit == 0) temp = Math.floor(raw - 273.15) // celcius
+    else if(unit == 1) temp = Math.floor(((raw - 273.15) * 1.8) + 32) // fahrenheit
+    else if(unit == 2) temp = Math.floor(raw) // already kelvin
+
+    const units = unit == 0
+                    ? `C`
+                    : unit == 1
+                        ? `F`
+                        : `K`
+
+    return `${temp}${(unit == 0 || unit == 1) ? `°` : ` `}${units}`
 }

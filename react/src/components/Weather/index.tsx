@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledWeather, WeatherPreview, CheckboxParent } from "./style";
-import { Button, Switch, TextField } from "@material-ui/core";
+import { Button, Slider, Switch, TextField } from "@material-ui/core";
 import { useStore } from "react-hookstore";
 import useSWR from "swr";
 import { fetcher } from "../../utils/fetcher";
@@ -24,6 +24,26 @@ const WeatherNotSetup = () => (
         <p>Weather not set-up yet.</p>
     </>
 )
+
+const totalUnits = 3-1;
+const units = [
+    {
+        value: 0,
+        label: '°C',
+    },
+    {
+        value: 100/totalUnits * 1,
+        label: '°F',
+    },
+    {
+        value: 100/totalUnits * 2,
+        label: 'K',
+    },
+]
+
+function valueLabelFormat(value: number) {
+    return units.find((mark: any) => Math.trunc(mark.value) === Math.trunc(value))?.label
+  }
 
 export const Weather = () => {
     const [settings, setSettings]: [typeof defaultWeatherSettings, any] = useStore('weatherSettings');
@@ -63,7 +83,7 @@ export const Weather = () => {
                     {(data && data.main) && (
                         <>
                             <WeatherIcon icon={require("../../assets/weather/cloud.svg")} />
-                            <h1>{data ? calculateTemp(data.main.temp, settings.useFahrenheit) : 0}°{settings.useFahrenheit ? `F` : `C`}</h1>
+                            <h1>{data ? calculateTemp(data.main.temp, settings.unit) : `-`}</h1>
                             <p>{data.name ? data.name : settings.city}, {(data.sys.country && countryCodes[data.sys.country]) ? countryCodes[data.sys.country] : settings.country}</p>
                         </>
                     )}
@@ -105,13 +125,17 @@ export const Weather = () => {
             </div>
 
             <CheckboxParent>
-                <span>Use Fahrenheit</span>
-                <Switch
-                    checked={settings.useFahrenheit}
-                    onChange={() => setSettings({ ...settings, useFahrenheit: !settings.useFahrenheit })}
-                    color="primary"
-                    name="useFahrenheit"
-                />
+                <span>Temperature units</span>
+                <div style={{ width: "150px" }}>
+                    <Slider
+                        value={100/totalUnits * settings.unit}
+                        valueLabelFormat={valueLabelFormat}
+                        valueLabelDisplay="auto"
+                        marks={units}
+                        step={null}
+                        onChange={(e: any, val: any) => setSettings({ ...settings, unit: units.findIndex(i => Math.trunc(i.value) == Math.trunc(val)) })}
+                    />
+                </div>
             </CheckboxParent>
         </StyledWeather>
     )
