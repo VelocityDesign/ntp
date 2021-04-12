@@ -79,6 +79,9 @@ body {
 
 .settings-open {
     position: absolute;
+    scroll-snap-type: x;
+    scrollbar-width: none;
+    overflow-y: scroll;
     right: 0;
     top: 0;
 }
