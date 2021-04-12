@@ -24,8 +24,6 @@ export const DAT = () => {
     }
 
     const onDateFormatChange = (newValue: string) => {
-        if(newValue.length == 0) newValue = defaultDATSettings.dateFormat
-
         setSettings({ ...settings, dateFormat: newValue })
     }
 
@@ -80,6 +78,7 @@ export const DAT = () => {
                     placeholder={"Date format"}
                     variant="outlined"
                     size="small"
+                    error={settings.dateFormat.length == 0}
                     onChange={(e: any) => onDateFormatChange(e.target.value)}
                 />
             </CheckboxParent>
