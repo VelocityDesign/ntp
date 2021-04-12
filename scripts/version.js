@@ -9,4 +9,4 @@ console.log(version)
 
 let package_json = JSON.parse(readFileSync(PACKAGE_JSON).toString())
 package_json.version = version
-writeFileSync(PACKAGE_JSON, JSON.stringify(package_json))
+writeFileSync(PACKAGE_JSON, JSON.stringify(package_json, null, 2))
