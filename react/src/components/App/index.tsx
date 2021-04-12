@@ -20,15 +20,16 @@ export const App = () => {
     const [settings, setSettings]: [{ provider: string, colour?: string }, any] = useStore('backgroundSettings');
 
     const [ready, setReady] = React.useState(false);
+    const [settingsReady, setSettingsReady] = React.useState(false);
     const [settingsVisible, onSettingsClick] = React.useState(false);
 
     const [src, setSrc] = React.useState(
         settings.provider == "unsplash" 
-            ? `linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 53.65%, rgba(0, 0, 0, 0.35) 100%), url(backgrounds/unsplash/${background.id}.jpeg)`
+            ? `linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 53.65%, rgba(0, 0, 0, 0.35) 100%)`
             : settings.colour || "#2554e1"
     );
 
-    if(settings.provider == "unsplash") {
+    if(settingsReady && settings.provider == "unsplash") {
         const img = new Image();
         img.src = `backgrounds/unsplash/${background.id}.jpeg`;
         img.addEventListener("load", () => {
@@ -42,14 +43,15 @@ export const App = () => {
                 provider: "unsplash",
                 colour: ""
             });
+            setSettingsReady(true);
         })
 
         setSrc(
-            settings.provider == "unsplash" 
+            settingsReady && settings.provider == "unsplash" 
                 ? `linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 53.65%, rgba(0, 0, 0, 0.35) 100%), url(backgrounds/unsplash/${background.id}.jpeg)`
                 : settings.colour || "#2554e1"
         )
-    }, [settings])
+    }, [settings, settingsReady])
 
     const onSettingsClose = () => {
         onSettingsClick(false)
