@@ -1,18 +1,16 @@
 import React from "react"
-import useLocalStorage, { createLocalStorageStateHook } from 'use-local-storage-state'
 import { BackgroundImage, BackgroundItem, StyledBackgrounds, BackgroundSelected  } from "./style"
 
 import solid from "../../assets/settings/backgrounds/solid.png"
-
-export const useBackgroundsSettings = createLocalStorageStateHook('widgets.background.settings', { provider: "unsplash" })
+import { useStore } from "react-hookstore";
 
 export const Backgrounds = () => {
     const uploadRef = React.createRef<HTMLInputElement>();
 
-    const [bgSettings, setBgSettings] = useBackgroundsSettings();
+    const [settings, setSettings]: [{ provider: string }, any] = useStore('backgroundSettings');
 
     const onChangeProvider = (provider: string) => {
-        setBgSettings({ ...bgSettings, provider })
+        setSettings({ ...settings, provider })
     }
 
     const onUploadClick = () => {
@@ -21,13 +19,13 @@ export const Backgrounds = () => {
 
     return (
         <StyledBackgrounds>
-            <BackgroundItem selected={bgSettings.provider == "unsplash"} onMouseUp={() => onChangeProvider("unsplash")}>
+            <BackgroundItem selected={settings.provider == "unsplash"} onMouseUp={() => onChangeProvider("unsplash")}>
                 <BackgroundImage src={require("../../assets/settings/backgrounds/unsplash.svg")} />
                 <p>Unsplash</p>
                 <BackgroundSelected />
             </BackgroundItem>
 
-            <BackgroundItem selected={bgSettings.provider == "solid"} onMouseUp={() => onChangeProvider("solid")}>
+            <BackgroundItem selected={settings.provider == "solid"} onMouseUp={() => onChangeProvider("solid")}>
                 <BackgroundImage src={solid} />
                 <p>Solid Colour</p>
                 <BackgroundSelected />

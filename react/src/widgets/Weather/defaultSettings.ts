@@ -1,1 +1,1 @@
-export const defaultWeatherSettings = { position: "bottom-left", city: "London", country: "England" };
+export const defaultWeatherSettings = { position: "bottom-left", city: "", country: "" };

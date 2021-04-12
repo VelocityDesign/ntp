@@ -15,5 +15,14 @@ export const widgets = [
             name: "weatherSettings",
             initial: defaultWeatherSettings
         }
+    },
+    {
+        name: "Background",
+        settings: {
+            name: "backgroundSettings",
+            initial: {
+                provider: "unsplash"
+            }
+        }
     }
 ]

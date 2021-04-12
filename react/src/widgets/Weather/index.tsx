@@ -1,5 +1,4 @@
 import React from "react";
-import useLocalStorage from 'use-local-storage-state'
 import { WeatherIcon, WeatherWidget } from "./style";
 import useSWR from 'swr'
 import { fetcher } from "../../utils/fetcher";
@@ -10,7 +9,7 @@ export const Weather = () => {
     const [settings, setSettings]: [typeof defaultWeatherSettings, any] = useStore('weatherSettings');
 
     const { data } = useSWR(
-        `https://compass-api.vercel.app/weather/${settings.city},${settings.country}`, 
+        (settings.city && settings.country) ? `https://compass-api.vercel.app/weather/${settings.city},${settings.country}` : ``, 
         fetcher
     )
 
@@ -21,6 +20,9 @@ export const Weather = () => {
     }, [settings])
 
     if (!data) return <></>
+    if (data && !data.main) return <WeatherWidget className={settings.position}>
+        <p>Failed to get weather.</p>
+    </WeatherWidget>
 
     return (
         <WeatherWidget className={settings.position}>

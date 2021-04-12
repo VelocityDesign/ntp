@@ -1,10 +1,8 @@
 import React from "react";
-import { usePersistedState } from '@dannyman/use-store';
 import { getTime } from "../../utils/time";
 import { TimeWidget } from "./style";
 import { format } from 'fecha';
 import { defaultDATSettings } from "./defaultSettings";
-import useLocalState from '@phntms/use-local-state';
 import { useStore } from "react-hookstore";
 
 export const Time = () => {
@@ -27,7 +25,7 @@ export const Time = () => {
         window.addEventListener("DOMContentLoaded", () => {
             setSettings(localStorage.getItem("datetimeSettings") ? JSON.parse(localStorage.getItem("datetimeSettings") || "") : defaultDATSettings);
         })
-        
+
         tick()
 
         timeInterval = setInterval(tick, 1)

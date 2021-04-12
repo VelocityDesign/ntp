@@ -2,10 +2,10 @@ import React from "react";
 import { getTime } from "../../utils/time";
 import { TimeWidget } from "../../widgets/Time/style";
 import { StyledDAT, DATPreview, CheckboxParent } from "./style";
-import { Checkbox } from "@material-ui/core";
+import { Checkbox, TextField } from "@material-ui/core";
 import { defaultDATSettings } from "../../widgets/Time/defaultSettings";
-import useLocalState from '@phntms/use-local-state';
 import { useStore } from "react-hookstore";
+import { format } from "fecha";
 
 export const DAT = () => {
     const [time, setTime] = React.useState("");
@@ -23,6 +23,12 @@ export const DAT = () => {
         setSettings({ ...settings, showSeconds: !settings.showSeconds })
     }
 
+    const onDateFormatChange = (newValue: string) => {
+        if(newValue.length == 0) newValue = defaultDATSettings.dateFormat
+
+        setSettings({ ...settings, dateFormat: newValue })
+    }
+
     React.useEffect(() => {
         window.addEventListener("DOMContentLoaded", () => {
             setSettings(localStorage.getItem("datetimeSettings") ? JSON.parse(localStorage.getItem("datetimeSettings") || "") : defaultDATSettings);
@@ -30,6 +36,7 @@ export const DAT = () => {
 
         timeInterval = setInterval(() => {
             setTime(getTime(settings.showSeconds, settings.twentyFourHour))
+            setDate(format(new Date(), settings.dateFormat))
         }, 1)
 
         return () => clearInterval(timeInterval);
@@ -63,6 +70,16 @@ export const DAT = () => {
                     disableFocusRipple 
                     checked={settings.showSeconds} 
                     onChange={() => onShowSecondsChange()}
+                />
+            </CheckboxParent>
+
+            <CheckboxParent>
+                <span>Date format</span>
+                <TextField
+                    value={settings.dateFormat}
+                    variant="outlined"
+                    size="small"
+                    onChange={(e: any) => onDateFormatChange(e.target.value)}
                 />
             </CheckboxParent>
         </StyledDAT>
