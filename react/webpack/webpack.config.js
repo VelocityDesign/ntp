@@ -75,7 +75,9 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: resolve(process.cwd(), "src", "backgrounds.json"), to: "backgrounds.json" },
-        { from: resolve(process.cwd(), "src", "backgrounds"), to: "backgrounds" }
+        { from: resolve(process.cwd(), "src", "backgrounds"), to: "backgrounds" },
+        { from: resolve(process.cwd(), "..", "extensions", "official", "manifest.json"), to: "manifest.json" },
+        { from: resolve(process.cwd(), "..", "extensions", "official", "images"), to: "images" }
       ],
     }),
   ],

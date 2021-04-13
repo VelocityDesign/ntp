@@ -41,7 +41,7 @@ jobs:
 
       - name: Build
         working-directory: react
-        run: yarn build:prod && cp -rv ../extensions/official/**/* dist
+        run: yarn build:prod
 
       - name: Compress
         working-directory: react
