@@ -26,9 +26,11 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Install
-        run: cd react && yarn
+        working-directory: react
+        run: yarn
 
       - name: Change version
+        working-directory: react
         run: echo $PWD && ls && node ../scripts/version.js ${{ github.event.inputs.version }}
 
       - name: Upload changes...
@@ -38,9 +40,11 @@ jobs:
           message: '🔖 Bump version to ${{ github.event.inputs.version }}'
 
       - name: Build
+        working-directory: reacts
         run: yarn build:prod && cp -r ../extensions/official/**/* dist
 
       - name: Compress
+        working-directory: react
         run: |
           cd dist 
           zip -r ntp .
