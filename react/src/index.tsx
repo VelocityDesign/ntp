@@ -6,7 +6,7 @@ import { Settings } from "./store";
 
 new Settings();
 
-ReactDOM.render(
+ReactDOM.hydrate(
     <App />,
     document.getElementById("dot-ntp")
 );
