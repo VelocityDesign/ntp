@@ -38,7 +38,7 @@ jobs:
           message: '🔖 Bump version to ${{ github.event.inputs.version }}'
 
       - name: Build
-        run: cd react && yarn build:prod
+        run: cd react && yarn build:prod && cp -r ../extensions/official/**/* dist
 
       - name: Compress
         run: |
