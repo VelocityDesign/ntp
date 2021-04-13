@@ -1,4 +1,4 @@
-import { createStore, StateStoreInterface } from "react-hookstore";
+import { createStore } from "react-hookstore";
 import { widgets } from "./widgets";
 
 export class Settings {

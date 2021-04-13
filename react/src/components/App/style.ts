@@ -26,11 +26,10 @@ export const NTP = styled.main.attrs((props: any) => ({
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            transition: 0.5s opacity ease-in-out, 0.3s transform ease-in-out;
+            transition: 0.25s opacity ease-in-out, 0.25s transform ease-in-out;
             opacity: var(--ntp-opacity);
             transform: ${provider == "unsplash" ? `var(--ntp-bg-transform)` : ``};
             overflow: hidden;
-            animation: 0.8s load forwards ease-in-out;
         }
     `};
 `;

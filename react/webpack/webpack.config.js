@@ -3,8 +3,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BrotliPlugin = require("brotli-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require("webpack");
 
-module.exports = {
+const config = {
   mode: process.env.NODE_ENV == "dev" ? "development" : "production",
   devtool: process.env.NODE_ENV == "dev" ? "eval-source-map" : undefined,
   entry: {
@@ -69,7 +72,6 @@ module.exports = {
     writeToDisk: true
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: resolve(process.cwd(), 'static', 'index.html')
@@ -82,6 +84,17 @@ module.exports = {
         { from: resolve(process.cwd(), "..", "extensions", "official", "images"), to: "images" }
       ],
     }),
+    new BrotliPlugin({
+			asset: '[path].br[query]',
+			test: /\.(js|css|html|svg|ts|tsx)$/,
+			threshold: 10240,
+			minRatio: 0.8
+    }),
+    new UglifyJsPlugin({
+      cache: true,
+      parallel: true,
+      sourceMap: true
+    })
   ],
   output: {
     filename: '[name].bundle.js',
@@ -89,7 +102,17 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
-    }
+			cacheGroups: {
+				commons: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendors',
+					chunks: 'all'
+				}
+			}
+		}
   }
 }
+
+if(process.env.NODE_ENV == "dev") config.plugins.push(new BundleAnalyzerPlugin())
+
+module.exports = config;
