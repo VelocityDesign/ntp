@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Suspense } from "react"
 
 import '../../reset.css';
 import '../../positions.css';
@@ -7,14 +7,14 @@ import { NTP, OpenSettings } from "./style";
 import backgrounds from "../../backgrounds.json";
 import { Time } from "../../widgets/Time";
 import { Weather } from "../../widgets/Weather";
-import { Settings } from "../Settings";
-import { SettingsHeader, Title, Close } from "../Settings/style";
 
 import { ThemeProvider } from "@material-ui/core"
 import { theme } from "../../theme";
 import { useStore } from "react-hookstore";
 
 const background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+
+const Settings = React.lazy(() => import('../Settings'));
 
 export const App = () => {
     const [settings, setSettings]: [{ provider: string, colour?: string }, any] = useStore('backgroundSettings');
@@ -66,7 +66,9 @@ export const App = () => {
                 <Weather />
                 <OpenSettings className={"top-right"} onClick={() => onSettingsClick(!settingsVisible)} />
             </NTP>
-            <Settings visible={settingsVisible} settingsClose={onSettingsClose} />
+            <Suspense fallback={<div>loading...</div>}>  
+                <Settings visible={settingsVisible} settingsClose={onSettingsClose} />
+            </Suspense>
         </ThemeProvider>
     )
 }

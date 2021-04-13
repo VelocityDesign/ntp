@@ -1,6 +1,9 @@
 import React from "react";
 import { StyledWeather, WeatherPreview, CheckboxParent } from "./style";
-import { Button, Slider, Switch, TextField } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import Slider from "@material-ui/core/Slider";
+import Switch from "@material-ui/core/Switch";
+import TextField from "@material-ui/core/TextField";
 import { useStore } from "react-hookstore";
 import useSWR from "swr";
 import { fetcher } from "../../utils/fetcher";

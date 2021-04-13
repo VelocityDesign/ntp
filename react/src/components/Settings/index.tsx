@@ -4,7 +4,7 @@ import { Backgrounds } from "../Backgrounds"
 import { DAT } from "../DAT"
 import { Container, SettingsHeader, SettingsPanel, Title, Close, Section, SectionHeader, SectionTitle, CategoryBackgroundIcon, CategoryDATIcon, CategoryWeatherIcon } from "./style"
 
-export const Settings = ({ visible, settingsClose }: { visible: boolean; settingsClose: any }) => {
+const Settings = ({ visible, settingsClose }: { visible: boolean; settingsClose: any }) => {
     const ref = React.createRef<HTMLDivElement>();
 
     const [atTop, setTop] = React.useState(true);
@@ -53,3 +53,5 @@ export const Settings = ({ visible, settingsClose }: { visible: boolean; setting
         </SettingsPanel>
     )
 }
+
+export default Settings;

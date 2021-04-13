@@ -2,6 +2,7 @@ const { resolve } = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   mode: process.env.NODE_ENV == "dev" ? "development" : "production",
@@ -68,6 +69,7 @@ module.exports = {
     writeToDisk: true
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: resolve(process.cwd(), 'static', 'index.html')
@@ -84,5 +86,10 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: resolve(process.cwd(), 'dist')
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    }
   }
 }
