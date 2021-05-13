@@ -62,7 +62,7 @@ export const TopSites = () => {
 
     return (
       <TopSitesDisplay
-        sites={data.filter((site) => site.favicon).splice(0, 4)}
+        sites={data.filter((site) => site.favicon).splice(0, settings.limit)}
       />
     );
   }
