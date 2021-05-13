@@ -14,7 +14,7 @@ const smp = new SpeedMeasurePlugin();
 
 const config = smp.wrap({
   mode: process.env.NODE_ENV == 'dev' ? 'development' : 'production',
-  devtool: process.env.NODE_ENV == 'dev' ? 'inline-source-map' : undefined,
+  devtool: process.env.NODE_ENV == 'dev' ? 'cheap-source-map' : undefined,
   cache: true,
   entry: {
     ntp: resolve(process.cwd(), 'src', 'index.tsx')
@@ -27,8 +27,29 @@ const config = smp.wrap({
     rules: [
       {
         test: /\.(tsx|ts)?$/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true
+            }
+          }
+        ],
         exclude: '/node_modules/'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              import: false,
+              modules: true
+            }
+          }
+        ],
+        include: /\.module\.css$/
       },
       {
         test: /\.css$/i,
@@ -43,7 +64,8 @@ const config = smp.wrap({
               }
             }
           }
-        ]
+        ],
+        exclude: /\.module\.css$/
       },
       {
         test: /\.svg/,

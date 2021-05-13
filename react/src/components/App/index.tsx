@@ -11,6 +11,7 @@ import { Weather } from '../../widgets/Weather';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from '../../theme';
 import { useStore } from 'react-hookstore';
+import { TopSites } from '../../widgets/TopSites';
 
 const background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
 
@@ -75,6 +76,7 @@ export const App = () => {
         style={{ '--ntp-bg': src }}
       >
         <Time />
+        <TopSites />
         <Weather />
         <OpenSettings
           className={'top-right'}

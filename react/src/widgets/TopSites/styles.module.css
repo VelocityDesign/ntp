@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  width: min-content;
+  padding: 18px;
+  gap: 12px;
+  margin-top: 58px;
+
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(4px);
+
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 22px;
+}
+
+.site {
+  width: 90px;
+  height: 90px;
+  padding: 14px;
+
+  background-color: white;
+  border-radius: 9px;
+}
+
+.site img {
+  width: 100%;
+  border-radius: 6px;
+}

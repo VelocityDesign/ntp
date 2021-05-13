@@ -1,4 +1,5 @@
 import { defaultDATSettings } from './Time/defaultSettings';
+import { defaultTopSiteSettings } from './TopSites/defaultSettings';
 import { defaultWeatherSettings } from './Weather/defaultSettings';
 
 export const widgets = [
@@ -7,6 +8,13 @@ export const widgets = [
     settings: {
       name: 'datetimeSettings',
       initial: defaultDATSettings
+    }
+  },
+  {
+    name: 'Top sites',
+    settings: {
+      name: 'topSitesSettings',
+      initial: defaultTopSiteSettings
     }
   },
   {

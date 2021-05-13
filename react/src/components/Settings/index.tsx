@@ -15,6 +15,7 @@ import {
   CategoryDATIcon,
   CategoryWeatherIcon
 } from './style';
+import { TopSitesSettings } from '../../widgets/TopSites/settings';
 
 const Settings = ({
   visible,
@@ -56,6 +57,14 @@ const Settings = ({
             <SectionTitle>Date &amp; Time</SectionTitle>
           </SectionHeader>
           <DAT />
+        </Section>
+
+        <Section>
+          <SectionHeader>
+            <CategoryDATIcon />
+            <SectionTitle>Top sites</SectionTitle>
+          </SectionHeader>
+          <TopSitesSettings />
         </Section>
 
         <Section>
