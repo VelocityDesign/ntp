@@ -1,15 +1,16 @@
-const { resolve } = require('path')
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const BrotliPlugin = require("brotli-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+const BrotliPlugin = require('brotli-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const webpack = require("webpack");
+const webpack = require('webpack');
 
 const config = {
-  mode: process.env.NODE_ENV == "dev" ? "development" : "production",
-  devtool: process.env.NODE_ENV == "dev" ? "eval-source-map" : undefined,
+  mode: process.env.NODE_ENV == 'dev' ? 'development' : 'production',
+  devtool: process.env.NODE_ENV == 'dev' ? 'inline-source-map' : undefined,
   entry: {
     ntp: resolve(process.cwd(), 'src', 'index.tsx')
   },
@@ -22,54 +23,48 @@ const config = {
       {
         test: /\.(tsx|ts)?$/,
         use: 'ts-loader',
-        exclude: '/node_modules/',
+        exclude: '/node_modules/'
       },
       {
         test: /\.css$/i,
         use: [
-          "style-loader",
-          "css-loader",
+          'style-loader',
+          'css-loader',
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [
-                  [
-                    "postcss-preset-env",
-                    {
-
-                    },
-                  ],
-                ],
-              },
-            },
-          },
-        ],
+                plugins: [['postcss-preset-env', {}]]
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.svg/,
         use: {
-          loader: "svg-url-loader",
+          loader: 'svg-url-loader',
           options: {
             // make loader to behave like url-loader, for all svg files
-            encoding: "base64",
-          },
-        },
+            encoding: 'base64'
+          }
+        }
       },
       {
         test: /\.(png)$/i,
         use: [
           {
-            loader: 'file-loader',
-          },
-        ],
-      },
-    ],
+            loader: 'file-loader'
+          }
+        ]
+      }
+    ]
   },
   devServer: {
     contentBase: resolve(process.cwd(), 'dist'),
     port: 9000,
-    writeToDisk: true
+    writeToDisk: true,
+    https: true
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -78,17 +73,41 @@ const config = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: resolve(process.cwd(), "src", "backgrounds.json"), to: "backgrounds.json" },
-        { from: resolve(process.cwd(), "src", "backgrounds"), to: "backgrounds" },
-        { from: resolve(process.cwd(), "..", "extensions", "official", "manifest.json"), to: "manifest.json" },
-        { from: resolve(process.cwd(), "..", "extensions", "official", "images"), to: "images" }
-      ],
+        {
+          from: resolve(process.cwd(), 'src', 'backgrounds.json'),
+          to: 'backgrounds.json'
+        },
+        {
+          from: resolve(process.cwd(), 'src', 'backgrounds'),
+          to: 'backgrounds'
+        },
+        {
+          from: resolve(
+            process.cwd(),
+            '..',
+            'extensions',
+            'official',
+            'manifest.json'
+          ),
+          to: 'manifest.json'
+        },
+        {
+          from: resolve(
+            process.cwd(),
+            '..',
+            'extensions',
+            'official',
+            'images'
+          ),
+          to: 'images'
+        }
+      ]
     }),
     new BrotliPlugin({
-			asset: '[path].br[query]',
-			test: /\.(js|css|html|svg|ts|tsx)$/,
-			threshold: 10240,
-			minRatio: 0.8
+      asset: '[path].br[query]',
+      test: /\.(js|css|html|svg|ts|tsx)$/,
+      threshold: 10240,
+      minRatio: 0.8
     }),
     new UglifyJsPlugin({
       cache: true,
@@ -102,17 +121,18 @@ const config = {
   },
   optimization: {
     splitChunks: {
-			cacheGroups: {
-				commons: {
-					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-					chunks: 'all'
-				}
-			}
-		}
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   }
-}
+};
 
-if(process.env.NODE_ENV == "dev") config.plugins.push(new BundleAnalyzerPlugin())
+if (process.env.NODE_ENV == 'dev')
+  config.plugins.push(new BundleAnalyzerPlugin());
 
 module.exports = config;

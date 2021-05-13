@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server -c webpack/webpack.config.js",
     "build": "cross-env NODE_ENV=dev webpack serve -c webpack/webpack.config.js",
     "build:prod": "cross-env NODE_ENV=prod webpack -c webpack/webpack.config.js",
     "deploy": "vercel"
