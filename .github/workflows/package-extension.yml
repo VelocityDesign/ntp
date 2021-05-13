@@ -15,6 +15,7 @@ jobs:
 
       - name: Install dependacies
         run: |
+          npm install
           cd react
           npm install
 
