@@ -1,3 +1,3 @@
 const netError = (code) => {
-    console.log(code);
+  console.log(code);
 };

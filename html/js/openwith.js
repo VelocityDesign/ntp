@@ -1,18 +1,21 @@
 const openURL = (url) => {
-    if (!url.startsWith('http')) {
-        console.log('i open');
-        launchBrowser(url);
-    } else {
-        console.log('i no open');
-    }
-}
+  if (!url.startsWith('http')) {
+    console.log('i open');
+    launchBrowser(url);
+  } else {
+    console.log('i no open');
+  }
+};
 
 const launchBrowser = (uri) => {
-    var overlay = document.createElement('div');
-    overlay.setAttribute('style',`
+  var overlay = document.createElement('div');
+  overlay.setAttribute(
+    'style',
+    `
         width: 100%;
-    `);
-    overlay.innerHTML = `
+    `
+  );
+  overlay.innerHTML = `
         <div class="webBrowser">
         </div>
         <style>
@@ -27,5 +30,5 @@ const launchBrowser = (uri) => {
         }
         </style>
     `;
-    document.body.appendChild(overlay);
-}
+  document.body.appendChild(overlay);
+};

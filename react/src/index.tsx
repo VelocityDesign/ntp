@@ -1,14 +1,11 @@
-import React from "react";
-import { render } from "react-dom";
+import React from 'react';
+import { render } from 'react-dom';
 
-import { App } from "./components/App";
-import { Settings } from "./store";
+import { App } from './components/App';
+import { Settings } from './store';
 
-console.time("start load")
+console.time('start load');
 
 new Settings();
 
-render(
-    <App />,
-    document.getElementById("dot-ntp")
-);
+render(<App />, document.getElementById('dot-ntp'));

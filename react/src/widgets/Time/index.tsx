@@ -1,42 +1,48 @@
-import React from "react";
-import { getTime } from "../../utils/time";
-import { TimeWidget } from "./style";
+import React from 'react';
+import { getTime } from '../../utils/time';
+import { TimeWidget } from './style';
 import { format } from 'fecha';
-import { defaultDATSettings } from "./defaultSettings";
-import { useStore } from "react-hookstore";
+import { defaultDATSettings } from './defaultSettings';
+import { useStore } from 'react-hookstore';
 
 export const Time = () => {
-    const [time, setTime] = React.useState("");
-    const [date, setDate] = React.useState("");
+  const [time, setTime] = React.useState('');
+  const [date, setDate] = React.useState('');
 
-    const [settings, setSettings]: [typeof defaultDATSettings, any] = useStore('datetimeSettings');
-    
-    let timeInterval: any;
+  const [settings, setSettings]: [typeof defaultDATSettings, any] = useStore(
+    'datetimeSettings'
+  );
 
-    const tick = () => {
-        const t = getTime(settings.showSeconds, settings.twentyFourHour);
-        const d = format(new Date(), settings.dateFormat)
+  let timeInterval: any;
 
-        setTime(t);
-        setDate(d);
-    }
+  const tick = () => {
+    const t = getTime(settings.showSeconds, settings.twentyFourHour);
+    const d = format(new Date(), settings.dateFormat);
 
-    React.useEffect(() => {
-        window.addEventListener("DOMContentLoaded", () => {
-            setSettings(localStorage.getItem("datetimeSettings") ? JSON.parse(localStorage.getItem("datetimeSettings") || "") : defaultDATSettings);
-        })
+    setTime(t);
+    setDate(d);
+  };
 
-        tick()
+  React.useEffect(() => {
+    window.addEventListener('DOMContentLoaded', () => {
+      setSettings(
+        localStorage.getItem('datetimeSettings')
+          ? JSON.parse(localStorage.getItem('datetimeSettings') || '')
+          : defaultDATSettings
+      );
+    });
 
-        timeInterval = setInterval(tick, 1)
+    tick();
 
-        return () => clearInterval(timeInterval);
-    }, [settings])
+    timeInterval = setInterval(tick, 1);
 
-    return (
-        <TimeWidget>
-            <h1>{time}</h1>
-            <p>{date}</p>
-        </TimeWidget>
-    )
-}
+    return () => clearInterval(timeInterval);
+  }, [settings]);
+
+  return (
+    <TimeWidget>
+      <h1>{time}</h1>
+      <p>{date}</p>
+    </TimeWidget>
+  );
+};
