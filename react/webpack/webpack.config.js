@@ -12,7 +12,7 @@ const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
 const smp = new SpeedMeasurePlugin();
 
-const config = smp.wrap({
+const config = {
   mode: process.env.NODE_ENV == 'dev' ? 'development' : 'production',
   devtool: process.env.NODE_ENV == 'dev' ? 'inline-source-map' : undefined,
   cache: true,
@@ -151,7 +151,7 @@ const config = smp.wrap({
       }
     }
   }
-});
+};
 
 if (process.env.NODE_ENV == 'dev') {
   config.plugins.push(new BundleAnalyzerPlugin());
@@ -168,4 +168,4 @@ if (process.env.NODE_ENV == 'dev') {
   );
 }
 
-module.exports = config;
+module.exports = smp.wrap(config);
