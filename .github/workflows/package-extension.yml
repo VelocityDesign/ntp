@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Compass into an Extension
         run: |
-          npm run build:prod
+          npm run build
           runTimestamp="$(date +%D)_$(date +%H)-$(date +%M)-$(date +%S)"
           mkdir -p extension/builds/
           mv dist/* extension/builds/
