@@ -1,8 +1,27 @@
+.searchForm {
+  display: flex;
+  background-color: white;
+  border-radius: 9px;
+}
+
 .searchField {
   height: 45px;
+  background: none;
   border: none;
-  border-radius: 9px;
   padding-left: 14px;
+  font-size: 16px;
   box-sizing: border-box;
   width: 100%;
+}
+
+.searchIcon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  margin: auto;
+
+  mask-image: url('../../assets/search/search.svg');
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  background-color: #858585;
 }

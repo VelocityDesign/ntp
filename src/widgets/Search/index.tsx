@@ -6,7 +6,12 @@ import React from 'react';
 import style from './styles.module.css';
 
 const SearchDisplay = ({ searchCall }) => (
-  <form onSubmit={searchCall} style={{ width: '100%' }} action="https://duckduckgo.com/">
+  <form
+    onSubmit={searchCall}
+    className={style.searchForm}
+    style={{ width: '100%' }}
+    action="https://duckduckgo.com/"
+  >
     <input
       type="text"
       name="q"
@@ -18,6 +23,9 @@ const SearchDisplay = ({ searchCall }) => (
         setTimeout(() => document.getElementById('search')?.focus(), 50)
       }
     />
+    <div style={{ display: 'grid', width: 48 }} onClick={searchCall}>
+      <i className={style.searchIcon}></i>
+    </div>
   </form>
 );
 
