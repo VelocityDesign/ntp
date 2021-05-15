@@ -1,6 +1,6 @@
 {
   "name": "ntp",
-  "version": "0.0.3",
+  "version": "0.0.5a3",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack serve -c webpack/webpack.config.js",
