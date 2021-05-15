@@ -40,6 +40,7 @@ export const Search = () => {
         searchCall={() => {
           const target = document.getElementById('search');
           window.location.href = `https://duckduckgo.com/?q=${target.value}`;
+          return false;
         }}
       />
     );
@@ -53,6 +54,7 @@ export const Search = () => {
         searchCall={() => {
           const target = document.getElementById('search') as HTMLInputElement;
           browser.search.search({ query: target.value || '', tabId: tabID });
+          return false;
         }}
       />
     );
